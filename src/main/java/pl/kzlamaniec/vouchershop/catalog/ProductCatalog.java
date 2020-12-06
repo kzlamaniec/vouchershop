@@ -1,46 +1,46 @@
 package pl.kzlamaniec.vouchershop.catalog;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class ProductCatalog {
-    private HashMap<String, Product> products;
+    private final HashMapProductStorage products;
 
     public ProductCatalog(){
-        this.products = new HashMap<String,Product>();
+
+        this.products = new HashMapProductStorage();
     }
 
     public String registerProduct() {
         Product newProduct = new Product(UUID.randomUUID());
-        products.put(newProduct.getId(), newProduct);
+        products.save(newProduct);
         return newProduct.getId();
     }
 
     public boolean isExists(String productId) {
-        return products.containsKey(productId);
+
+        return products.isExists(productId);
     }
 
     public Product load(String productId) {
-        return products.get(productId);
+        return products.load(productId);
     }
 
     public void updateDetails(String productId, String productDesc, String productPicture) {
-        Product loaded = products.get(productId);
+        Product loaded = products.load(productId);
         loaded.setDescription(productDesc);
         loaded.setPicture(productPicture);
     }
 
     public void applyPrice(String productId, BigDecimal productPrice) {
-        Product loaded = products.get(productId);
+        Product loaded = products.load(productId);
         loaded.setPrice(productPrice);
     }
 
     public List<Product> allPublished() {
-        return products.values()
+        return products.allProducts()
                 .stream()
                 .filter(p -> p.getDescription() != null)
                 .filter(p -> p.getPicture() != null)

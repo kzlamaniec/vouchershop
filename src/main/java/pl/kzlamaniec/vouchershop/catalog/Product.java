@@ -8,7 +8,6 @@ public class Product {
     private String description;
     private String picture;
     private BigDecimal price;
-    private String Foo = "boo";
 
     public Product(UUID productId) {
         this.productId = productId;
@@ -42,7 +41,4 @@ public class Product {
         this.price = price;
     }
 
-    public String getFoo() {
-        return Foo;
-    }
 }

@@ -13,10 +13,12 @@ public class CatalogController {
     public CatalogController(ProductCatalog catalog) {
         this.catalog = catalog;
     }
+
     @GetMapping("/api/products")
     public List<Product> allProducts(){
         return catalog.allPublished();
     }
+
     @GetMapping("/api/names")
     public List<String> allNames(){
         return Arrays.asList("Klaudia", "Grzegorz");
