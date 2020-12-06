@@ -82,6 +82,6 @@ public class ProductCatalogTest {
     }
 
     private static ProductCatalog therIsProductCatalog() {
-        return new ProductCatalog();
+        return new ProductCatalogConfiguration().myProductCatalog();
     }
 }
