@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+
 public class ProductCatalog {
-    private final HashMapProductStorage products;
+    private final ProductStorage products;
 
-    public ProductCatalog(){
-
-        this.products = new HashMapProductStorage();
+    public ProductCatalog(ProductStorage productStorage){
+        this.products = productStorage;
     }
 
     public String registerProduct() {

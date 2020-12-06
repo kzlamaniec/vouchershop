@@ -2,6 +2,7 @@ package pl.kzlamaniec.vouchershop.catalog;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.math.BigDecimal;
 
@@ -9,11 +10,22 @@ import java.math.BigDecimal;
 public class ProductCatalogConfiguration {
 
     ProductCatalog myProductCatalog() {
-        return new ProductCatalog();
+        return new ProductCatalog(new HashMapProductStorage());
     }
+
     @Bean
-    ProductCatalog myFixtureAwareCatalog() {
-        ProductCatalog productCatalog = new ProductCatalog();
+    ProductStorage mongoDbStorage() {
+        return null;
+    }
+
+    @Bean
+    ProductStorage myHashMapProductStorage() {
+        return new HashMapProductStorage();
+    }
+
+    @Bean
+    ProductCatalog myFixtureAwareCatalog(ProductStorage productStorage) {
+        ProductCatalog productCatalog = new ProductCatalog(productStorage);
 
         var p1 = productCatalog.registerProduct();
         productCatalog.applyPrice(p1, BigDecimal.valueOf(22.22));
