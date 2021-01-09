@@ -14,7 +14,7 @@ public class ProductCatalogTest {
     @Test
     public void itAllowsToRegisterNewProduct(){
         //Arrange //Given
-        ProductCatalog catalog = therIsProductCatalog();
+        ProductCatalog catalog = thereIsProductCatalog();
         //Act     //When
         String productId = catalog.registerProduct();
         //Assert //Then
@@ -26,7 +26,7 @@ public class ProductCatalogTest {
     @Test
     public void itAllowsLoadCreatedProduct(){
         //Arrange
-        ProductCatalog catalog = therIsProductCatalog();
+        ProductCatalog catalog = thereIsProductCatalog();
         //Act
         String productId = catalog.registerProduct();
         Product loaded = catalog.load(productId);
@@ -37,7 +37,7 @@ public class ProductCatalogTest {
     @Test
     public void itAllowsFIllADetails(){
         //Arrange
-        ProductCatalog catalog = therIsProductCatalog();
+        ProductCatalog catalog = thereIsProductCatalog();
         //Act
         String productId = catalog.registerProduct();
         catalog.updateDetails(productId, PRODUCT_DESC, PRODUCT_PICTURE);
@@ -51,7 +51,7 @@ public class ProductCatalogTest {
     @Test
     public void itAllowsApplyPrice(){
         //Arrange
-        ProductCatalog catalog = therIsProductCatalog();
+        ProductCatalog catalog = thereIsProductCatalog();
         //Act
         String productId = catalog.registerProduct();
         catalog.applyPrice(productId, BigDecimal.TEN);
@@ -64,7 +64,7 @@ public class ProductCatalogTest {
     @Test
     public void itAllowsToListAllProducts() {
         //Arrange
-        ProductCatalog catalog = therIsProductCatalog();
+        ProductCatalog catalog = thereIsProductCatalog();
         //Act
         String productId = catalog.registerProduct();
         catalog.updateDetails(productId, PRODUCT_DESC, PRODUCT_PICTURE);
@@ -81,7 +81,7 @@ public class ProductCatalogTest {
 
     }
 
-    private static ProductCatalog therIsProductCatalog() {
+    private static ProductCatalog thereIsProductCatalog() {
         return new ProductCatalogConfiguration().myProductCatalog();
     }
 }
