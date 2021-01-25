@@ -1,10 +1,6 @@
 package pl.kzlamaniec.vouchershop.catalog;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class ListProductStorage implements ProductStorage {
         private List<Product> products;
@@ -26,13 +22,11 @@ public class ListProductStorage implements ProductStorage {
     }
 
     @Override
-    public Product load(String productId) {
-        var optional = products
+    public Optional<Product> load(String productId) {
+        return products
                 .stream()
                 .filter(product -> product.getId().equals(productId))
                 .findFirst();
-
-        return optional.get();
     }
 
     @Override

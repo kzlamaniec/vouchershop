@@ -2,6 +2,7 @@ package pl.kzlamaniec.vouchershop.catalog;
 
 import org.junit.Assert;
 import org.junit.Test;
+import pl.kzlamaniec.vouchershop.catalog.exceptions.NoSuchProductException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,9 +53,19 @@ public class ListProductStorageTest {
 
         productStorage.save(product1);
 
-        var loaded = productStorage.load(product1.getId());
+        var loaded = productStorage.load(product1.getId())
+                .get();
 
         assertThat(loaded.getId()).isEqualTo(product1.getId());
+    }
+
+    @Test(expected = NoSuchProductException.class)
+    public void itShouldProtectFromDefenseProgrammming() {
+        ProductStorage productStorage = new ListProductStorage();
+
+        var loaded = productStorage.load(UUID.randomUUID().toString())
+                .orElseThrow(() -> new NoSuchProductException("no such product"));
+
     }
 
     @Test
