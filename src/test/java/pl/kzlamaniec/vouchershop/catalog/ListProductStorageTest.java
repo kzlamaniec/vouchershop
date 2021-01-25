@@ -14,7 +14,7 @@ public class ListProductStorageTest {
     public void itAllowAddProduct() {
         //A
         ProductStorage productStorage = new ListProductStorage();
-        Product product = thereIsProduct();
+        Product product = ProductFixtures.randomProduct();
         //A
         productStorage.save(product);
         //A
@@ -25,8 +25,8 @@ public class ListProductStorageTest {
     public void itAllowLoadAllProducts(){
         //Arrange
         ProductStorage productStorage = new ListProductStorage();
-        var product1 =thereIsProduct();
-        var product2 =thereIsProduct();
+        var product1 = ProductFixtures.randomProduct();
+        var product2 = ProductFixtures.randomProduct();
         //Act
         productStorage.save(product1);
         productStorage.save(product2);
@@ -38,7 +38,7 @@ public class ListProductStorageTest {
     @Test
     public void itAllowCheckIfProductExists() {
         ProductStorage productStorage = new ListProductStorage();
-        var product1 = thereIsProduct();
+        var product1 = ProductFixtures.randomProduct();
 
         productStorage.save(product1);
 
@@ -49,7 +49,7 @@ public class ListProductStorageTest {
     @Test
     public void itAllowLoadSingleProduct() {
         ProductStorage productStorage = new ListProductStorage();
-        var product1 = thereIsProduct();
+        var product1 = ProductFixtures.randomProduct();
 
         productStorage.save(product1);
 
@@ -74,7 +74,4 @@ public class ListProductStorageTest {
         assertThat(Arrays.asList("klaudia","katarzyna","joanna")).hasSize(3).contains("klaudia").doesNotContain("emilia");
     }
 
-    private Product thereIsProduct() {
-        return new Product(UUID.randomUUID());
-    }
 }
