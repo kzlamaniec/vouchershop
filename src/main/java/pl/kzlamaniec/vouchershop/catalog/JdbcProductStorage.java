@@ -27,7 +27,7 @@ public class JdbcProductStorage implements ProductStorage {
 
     @Override
     public boolean isExists(String productId) {
-        return true;
+        return false;
     }
 
     @Override
