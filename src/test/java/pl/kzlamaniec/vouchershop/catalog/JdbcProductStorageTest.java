@@ -41,6 +41,8 @@ public class JdbcProductStorageTest {
 
         assertThat(productStorage.isExists(product.getId()))
                 .isTrue();
+        assertThat(productStorage.isExists(UUID.randomUUID().toString()))
+                .isFalse();
     }
 
     @Test
