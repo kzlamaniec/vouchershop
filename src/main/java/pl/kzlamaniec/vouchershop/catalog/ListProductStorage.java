@@ -1,25 +1,36 @@
 package pl.kzlamaniec.vouchershop.catalog;
 
-import java.util.List;
+import java.util.*;
 
 public class ListProductStorage implements ProductStorage {
+        private List<Product> products;
+
+        public ListProductStorage() {
+            this.products = new ArrayList<>();
+    }
+
     @Override
     public void save(Product newProduct) {
-
+        products.add(newProduct);
     }
 
     @Override
     public boolean isExists(String productId) {
-        return false;
+        return products
+                .stream()
+                .anyMatch(product -> product.getId().equals(productId));
     }
 
     @Override
-    public Product load(String productId) {
-        return null;
+    public Optional<Product> load(String productId) {
+        return products
+                .stream()
+                .filter(product -> product.getId().equals(productId))
+                .findFirst();
     }
 
     @Override
     public List<Product> allProducts() {
-        return null;
+        return Collections.unmodifiableList(products);
     }
 }
