@@ -57,4 +57,9 @@ public class JdbcProductStorage implements ProductStorage {
 
         return allProducts;
     }
+
+    @Override
+    public void clean() {
+        jdbcTemplate.execute("Delete from `productsCatalog-products`");
+    }
 }

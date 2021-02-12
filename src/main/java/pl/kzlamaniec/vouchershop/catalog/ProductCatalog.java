@@ -46,11 +46,16 @@ public class ProductCatalog {
                 .stream()
                 .filter(p -> p.getDescription() != null)
                 .filter(p -> p.getPicture() != null)
+                .filter(p -> p.getPrice() != null)
                 .collect(Collectors.toList());
     }
 
     private Product getProductOrThrow(String productId) {
         return products.load(productId)
                 .orElseThrow(() -> new NoSuchProductException(String.format("There is no product with id %s", productId)));
+    }
+
+    public void clean() {
+        products.clean();
     }
 }
