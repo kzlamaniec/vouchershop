@@ -73,20 +73,6 @@ public class BasketTest {
 
     }
 
-    @Test
-    public void itAllowToRemoveProduct() {
-        Basket basket = new Basket();
-        var product1 = thereIsProduct("Darth Vader - action figure");
-
-        basket.add(product1);
-        basket.add(product1);
-        basket.add(product1);
-
-        basket.remove(product1.getId());
-
-        basketContainsProductWithQuantity(basket, product1, 2);
-    }
-
     private void basketContainsProductWithQuantity(Basket basket, Product product1, int expectedQuantity) {
         assertThat(basket.getBasketItems())
                 .filteredOn(basketItem -> basketItem.getProductId().equals(product1.getId()))
