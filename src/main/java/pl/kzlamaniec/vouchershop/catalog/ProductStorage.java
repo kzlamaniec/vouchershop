@@ -11,4 +11,6 @@ public interface ProductStorage {
     Optional<Product> load(String productId);
 
     List<Product> allProducts();
+
+    void clean();
 }

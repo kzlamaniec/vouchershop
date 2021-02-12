@@ -27,4 +27,9 @@ public class HashMapProductStorage implements ProductStorage {
     public List<Product> allProducts() {
         return new ArrayList<>(products.values());
     }
+
+    @Override
+    public void clean() {
+        products.clear();
+    }
 }
