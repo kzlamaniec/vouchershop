@@ -84,7 +84,7 @@ public class BasketTest {
 
         basket.remove(product1.getId());
 
-        basketContainsProductWithQuantity(basket, product1, 2)
+        basketContainsProductWithQuantity(basket, product1, 2);
     }
 
     private void basketContainsProductWithQuantity(Basket basket, Product product1, int expectedQuantity) {
