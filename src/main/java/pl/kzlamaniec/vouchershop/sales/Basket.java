@@ -2,7 +2,6 @@ package pl.kzlamaniec.vouchershop.sales;
 
 import pl.kzlamaniec.vouchershop.catalog.Product;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,13 +22,11 @@ public class Basket {
     }
 
     public void add(Product product) {
-        products.put(product.getId(), product);
-        if (productsQuantities.containsKey(product.getId())) {
-            productsQuantities.put(
-                    product.getId(),
-                    productsQuantities.get(product.getId()) + 1);
+
+        if (isInBasket(product)) {
+            increaseQuantity(product);
         } else {
-            productsQuantities.put(product.getId(), 1);
+            putIntoBasket(product);
         }
     }
 
@@ -45,5 +42,21 @@ public class Basket {
     }
 
     public void remove(String id) {
+    }
+
+
+    private void putIntoBasket(Product product) {
+        productsQuantities.put(product.getId(), 1);
+        products.put(product.getId(), product);
+    }
+
+    private void increaseQuantity(Product product) {
+        productsQuantities.put(
+                product.getId(),
+                productsQuantities.get(product.getId()) + 1);
+    }
+
+    private boolean isInBasket(Product product) {
+        return productsQuantities.containsKey(product.getId());
     }
 }

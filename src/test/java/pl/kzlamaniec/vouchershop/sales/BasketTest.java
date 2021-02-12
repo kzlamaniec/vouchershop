@@ -51,7 +51,6 @@ public class BasketTest {
 
         basket.add(product1);
         basket.add(product1);
-        basket.add(product1);
 
         assertThat(basket.getProductCount())
                 .isEqualTo(1);
