@@ -1,4 +1,4 @@
-package pl.kzlamaniec.vouchershop.sales;
+package pl.kzlamaniec.vouchershop.sales.offering;
 
 import pl.kzlamaniec.vouchershop.catalog.Product;
 import pl.kzlamaniec.vouchershop.catalog.ProductCatalog;

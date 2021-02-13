@@ -2,13 +2,10 @@ package pl.kzlamaniec.vouchershop.sales;
 
 import org.junit.Before;
 import org.junit.Test;
-import pl.kzlamaniec.vouchershop.catalog.ProductCatalog;
 import pl.kzlamaniec.vouchershop.sales.basket.BasketStorage;
 import pl.kzlamaniec.vouchershop.sales.offering.Offer;
 import pl.kzlamaniec.vouchershop.sales.offering.OfferMaker;
-import pl.kzlamaniec.vouchershop.sales.offering.PricingProvider;
-
-import static org.assertj.core.api.Assertions.*;
+import pl.kzlamaniec.vouchershop.sales.offering.ProductCatalogPricingProvider;
 
 import java.math.BigDecimal;
 import java.util.UUID;
