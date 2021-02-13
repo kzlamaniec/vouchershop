@@ -3,43 +3,42 @@ package pl.kzlamaniec.vouchershop.sales;
 import org.junit.Before;
 import org.junit.Test;
 import pl.kzlamaniec.vouchershop.catalog.ProductCatalog;
-import pl.kzlamaniec.vouchershop.catalog.ProductCatalogConfiguration;
-import pl.kzlamaniec.vouchershop.sales.basket.Basket;
 import pl.kzlamaniec.vouchershop.sales.basket.BasketStorage;
+import pl.kzlamaniec.vouchershop.sales.offering.Offer;
+import pl.kzlamaniec.vouchershop.sales.offering.OfferMaker;
+import pl.kzlamaniec.vouchershop.sales.offering.PricingProvider;
+
+import static org.assertj.core.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.*;
-
-
-public class CollectingProductsTest extends SalesTestCase {
-
+public class OrderingTest extends SalesTestCase{
     @Before
     public void setUp() {
         this.basketStorage = new BasketStorage();
         this.customerId =  UUID.randomUUID().toString();
         this.userContext = () -> customerId;
         this.productCatalog = thereIsProductCatalog();
+        this.offerMaker = thereIsOfferMaker();
     }
 
-
     @Test
-    public void itAllowAddProductToBasket() {
+    public void itCreateOfferBasedOnSelectedProducts() {
         SalesFacade salesComponent = thereIsSalesComponent();
         String productId = thereIsProductAvailable();
         String customerId = thereIsCustomerWhoIsDoingHisShoping();
 
         salesComponent.addToBasket(productId);
+        salesComponent.addToBasket(productId);
 
-        thereIsNProductsInCustomerBasket(1, customerId);
+        Offer offer = salesComponent.getCurrentOffer();
+
+        assertThat(offer.getTotal()).isEqualTo(BigDecimal.valueOf(200.200));
+
     }
 
-    private void thereIsNProductsInCustomerBasket(int productCount, String customerId) {
-        Basket basket = basketStorage.getBasketForCustomer(customerId)
-                .orElse(Basket.empty());
-
-        assertThat(basket.getProductCount()).isEqualTo(productCount);
+    private OfferMaker thereIsOfferMaker() {
+        return new OfferMaker(new ProductCatalogPricingProvider(productCatalog));
     }
-
 }

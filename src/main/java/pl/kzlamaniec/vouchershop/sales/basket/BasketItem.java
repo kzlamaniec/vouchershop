@@ -16,4 +16,5 @@ public class BasketItem {
     public Integer getQuantity() {
         return quantity;
     }
+
 }
