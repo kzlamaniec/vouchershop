@@ -30,4 +30,11 @@ public class SalesFacade {
     private String getCurrentCustomerId() {
         return currentCustomerContext.getCustomerId();
     }
+
+    public void getCurrentOffer() {
+    }
+
+    public PaymentDetails acceptOffer() {
+        return null;
+    }
 }
