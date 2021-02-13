@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Configuration
 public class ProductCatalogConfiguration {
 
-    ProductCatalog myProductCatalog() {
+    public ProductCatalog myProductCatalog() {
         return new ProductCatalog(new HashMapProductStorage());
     }
 
@@ -25,15 +25,15 @@ public class ProductCatalogConfiguration {
 
         var p1 = productCatalog.registerProduct();
         productCatalog.applyPrice(p1, BigDecimal.valueOf(22.22));
-        productCatalog.updateDetails(p1, "My nice product", "Nice picture");
+        productCatalog.updateDetails(p1, "Darth Vader - action figure", "Darth Vader with red lightsaber");
 
         var p2 = productCatalog.registerProduct();
         productCatalog.applyPrice(p2, BigDecimal.valueOf(122.22));
-        productCatalog.updateDetails(p2, "My nice product 2", "Nice picture 2");
+        productCatalog.updateDetails(p2, "Luke Skywalker - action figure", "Luke Skywalker with green lightsaber");
 
         var p3 = productCatalog.registerProduct();
         productCatalog.applyPrice(p3, BigDecimal.valueOf(222.22));
-        productCatalog.updateDetails(p3, "My nice product 3", "Nice picture 3");
+        productCatalog.updateDetails(p3, "Princess Leia - action figure", "Princess Leia with a gun");
 
         return productCatalog;
     }

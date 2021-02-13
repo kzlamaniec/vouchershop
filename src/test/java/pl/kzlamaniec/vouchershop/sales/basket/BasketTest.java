@@ -1,10 +1,9 @@
-package pl.kzlamaniec.vouchershop.sales;
+package pl.kzlamaniec.vouchershop.sales.basket;
 
 import org.junit.Test;
-import org.springframework.test.context.TestPropertySource;
 import pl.kzlamaniec.vouchershop.catalog.Product;
+import pl.kzlamaniec.vouchershop.sales.basket.Basket;
 
-import java.util.Collections;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.*;
