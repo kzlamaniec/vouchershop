@@ -1,9 +1,7 @@
 package pl.kzlamaniec.vouchershop.sales;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pl.kzlamaniec.vouchershop.crm.Client;
 import pl.kzlamaniec.vouchershop.sales.offering.Offer;
 
 @RestController
@@ -26,7 +24,7 @@ public class SalesController {
     }
 
     @GetMapping("/api/accept-offer")
-    public PaymentDetails acceptOffer() {
-        return salesFacade.acceptOffer();
+    public PaymentDetails acceptOffer(@RequestBody ClientData clientData) {
+        return salesFacade.acceptOffer(clientData);
     }
 }

@@ -14,8 +14,13 @@ import pl.kzlamaniec.vouchershop.sales.offering.ProductCatalogPricingProvider;
 public class SalesConfiguration {
 
     @Bean
-    SalesFacade salesFacade(CurrentCustomerContext customerContext, ProductCatalog productCatalog, OfferMaker offerMaker) {
-        return new SalesFacade(customerContext, new BasketStorage(), productCatalog, offerMaker);
+    SalesFacade salesFacade(CurrentCustomerContext customerContext, ProductCatalog productCatalog, OfferMaker offerMaker, PaymentGateway paymentGateway) {
+        return new SalesFacade(customerContext, new BasketStorage(), productCatalog, offerMaker, paymentGateway);
+    }
+
+    @Bean
+    PaymentGateway paymentGateway() {
+        return null;
     }
 
     @Bean

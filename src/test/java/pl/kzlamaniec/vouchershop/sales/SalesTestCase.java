@@ -14,6 +14,7 @@ public class SalesTestCase {
     protected ProductCatalog productCatalog;
     protected String customerId;
     protected OfferMaker offerMaker;
+    protected PaymentGateway paymentGateway;
 
     protected static ProductCatalog thereIsProductCatalog() {
         return new ProductCatalogConfiguration().myProductCatalog();
@@ -34,6 +35,6 @@ public class SalesTestCase {
     }
 
     protected SalesFacade thereIsSalesComponent() {
-        return new SalesFacade(userContext, basketStorage, productCatalog, offerMaker);
+        return new SalesFacade(userContext, basketStorage, productCatalog, offerMaker, paymentGateway);
     }
 }

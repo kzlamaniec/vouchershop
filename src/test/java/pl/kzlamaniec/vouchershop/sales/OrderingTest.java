@@ -19,6 +19,11 @@ public class OrderingTest extends SalesTestCase{
         this.userContext = () -> customerId;
         this.productCatalog = thereIsProductCatalog();
         this.offerMaker = thereIsOfferMaker();
+        this.paymentGateway = thereIsPaymentGateway();
+    }
+
+    private PaymentGateway thereIsPaymentGateway() {
+        return ((reservation, clientData) -> new PaymentDetails("url", "payId", reservation.getId()));
     }
 
     @Test
@@ -53,6 +58,14 @@ public class OrderingTest extends SalesTestCase{
         assertThat(paymentDetails.getPaymentId()).isNotNull();
         assertThat(paymentDetails.getReservationId()).isNotNull();
 
+    }
+
+    private ClientData thereIsClientData() {
+        return ClientData.builder()
+                .email("wolha.redna@exemple.dev")
+                .firstname("Wolha")
+                .lastname("Redna")
+                .build();
     }
 
     private OfferMaker thereIsOfferMaker() {
