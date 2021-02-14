@@ -3,9 +3,9 @@ package pl.kzlamaniec.vouchershop.sales;
 
 import java.util.UUID;
 
-public class RandomCustomerContext implements CurrentCustomerContext {
+public class AlwaysTheSameCustomerContext implements CurrentCustomerContext {
     @Override
     public String getCustomerId() {
-        return UUID.randomUUID().toString();
+        return "Customer_1";
     }
 }

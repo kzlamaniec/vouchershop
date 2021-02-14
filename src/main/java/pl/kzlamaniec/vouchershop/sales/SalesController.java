@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.kzlamaniec.vouchershop.sales.offering.Offer;
 
 @RestController
 public class SalesController {
@@ -20,8 +21,8 @@ public class SalesController {
     }
 
     @GetMapping("/api/current-offer")
-    public void currentOffer() {
-        salesFacade.getCurrentOffer();
+    public Offer currentOffer() {
+        return salesFacade.getCurrentOffer();
     }
 
     @GetMapping("/api/accept-offer")

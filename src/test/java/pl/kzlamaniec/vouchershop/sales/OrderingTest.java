@@ -9,6 +9,7 @@ import pl.kzlamaniec.vouchershop.sales.offering.ProductCatalogPricingProvider;
 
 import java.math.BigDecimal;
 import java.util.UUID;
+import static org.assertj.core.api.Assertions.*;
 
 public class OrderingTest extends SalesTestCase{
     @Before
@@ -32,6 +33,25 @@ public class OrderingTest extends SalesTestCase{
         Offer offer = salesComponent.getCurrentOffer();
 
         assertThat(offer.getTotal()).isEqualTo(BigDecimal.valueOf(200.200));
+
+    }
+
+    @Test
+    public void itCreateReservationBasedOnCurrentOffer() {
+        SalesFacade salesComponent = thereIsSalesComponent();
+        String productId = thereIsProductAvailable();
+        String customerId = thereIsCustomerWhoIsDoingHisShoping();
+
+        salesComponent.addToBasket(productId);
+        salesComponent.addToBasket(productId);
+
+        Offer seenOffer = salesComponent.getCurrentOffer();
+
+        PaymentDetails paymentDetails = salesComponent.acceptOffer(thereIsClientData());
+
+        assertThat(paymentDetails.getPaymentUrl()).isNotNull();
+        assertThat(paymentDetails.getPaymentId()).isNotNull();
+        assertThat(paymentDetails.getReservationId()).isNotNull();
 
     }
 
