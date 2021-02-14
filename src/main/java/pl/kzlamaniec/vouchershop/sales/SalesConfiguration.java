@@ -2,6 +2,9 @@ package pl.kzlamaniec.vouchershop.sales;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import pl.kzlamaniec.payu.PayU;
+import pl.kzlamaniec.payu.PayUApiCredentials;
+import pl.kzlamaniec.payu.http.NetHttpClientPayuHttp;
 import pl.kzlamaniec.vouchershop.catalog.Product;
 import pl.kzlamaniec.vouchershop.catalog.ProductCatalog;
 import pl.kzlamaniec.vouchershop.sales.basket.BasketStorage;
@@ -20,7 +23,7 @@ public class SalesConfiguration {
 
     @Bean
     PaymentGateway paymentGateway() {
-        return null;
+        return new PayUPaymentGateway(new PayU(PayUApiCredentials.sandbox(), new NetHttpClientPayuHttp()));
     }
 
     @Bean

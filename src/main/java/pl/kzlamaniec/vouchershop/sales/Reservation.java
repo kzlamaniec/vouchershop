@@ -2,6 +2,7 @@ package pl.kzlamaniec.vouchershop.sales;
 
 import pl.kzlamaniec.vouchershop.sales.offering.Offer;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 
@@ -18,5 +19,9 @@ public class Reservation {
 
     public String getId() {
         return id;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return null;
     }
 }
